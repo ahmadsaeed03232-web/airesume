@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+@source "../../storage/framework/views/*.php";
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* ========================================== */
+/* Custom Scrollbars                          */
+/* ========================================== */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+/* ========================================== */
+/* RESUME SHEET — Responsive Fluid Scaling    */
+/* ========================================== */
+
+/*
+ * The print-sheet scales its font and padding fluidly based on the available
+ * container width. This allows the same template HTML to look great at any
+ * viewport size without media-query breakpoints inside each template.
+ *
+ * Container widths are constrained by the parent (max-w-[21cm] ≈ 794px).
+ * font-size: clamp(min, preferred, max) — scales between 7pt and 10pt.
+ * padding: clamp(0.5cm, 3vw, 1.5cm) — shrinks gracefully on small screens.
+ */
+.print-sheet {
+    box-sizing: border-box;
+    font-size: clamp(7pt, 1.3vw, 10pt);
+    line-height: 1.5;
+    padding: clamp(0.5cm, 3.5vw, 1.5cm);
+}
+
+/* ========================================== */
+/* FONT FAMILIES PER TEMPLATE                 */
+/* ========================================== */
+
+/* Modern — clean sans-serif with indigo accents */
+.template-modern { font-family: 'Inter', 'Instrument Sans', ui-sans-serif, sans-serif; }
+.template-modern h1, .template-modern h2, .template-modern h3, .template-modern h4 { color: #0f172a; }
+
+/* Classic — traditional serif for formal resumes */
+.template-classic { font-family: 'Lora', 'Georgia', 'Times New Roman', serif; }
+.template-classic h1, .template-classic h2, .template-classic h3, .template-classic h4 { color: #000000; }
+
+/* Minimal — ultra-compact system sans */
+.template-minimal { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; letter-spacing: -0.01em; }
+.template-minimal h1, .template-minimal h2, .template-minimal h3, .template-minimal h4 { color: #111827; }
+
+/* Slate — structured professional */
+.template-slate { font-family: 'Plus Jakarta Sans', 'Instrument Sans', ui-sans-serif, sans-serif; }
+.template-slate h1, .template-slate h2, .template-slate h3, .template-slate h4 { color: #1e293b; }
+
+/* Creative Teal */
+.template-creative { font-family: 'Plus Jakarta Sans', 'Instrument Sans', ui-sans-serif, sans-serif; }
+.template-creative h1, .template-creative h2, .template-creative h3, .template-creative h4 { color: #134e4a; }
+
+/* Emerald — serif for an academic, refined look */
+.template-emerald { font-family: 'Lora', 'Georgia', serif; }
+.template-emerald h1, .template-emerald h2, .template-emerald h3, .template-emerald h4 { color: #064e3b; }
+
+/* Royal — bold blue authority */
+.template-royal { font-family: 'Inter', ui-sans-serif, sans-serif; }
+.template-royal h1, .template-royal h2, .template-royal h3, .template-royal h4 { color: #1e3a8a; }
+
+/* Border — clean bordered minimal */
+.template-border { font-family: 'Inter', ui-sans-serif, sans-serif; }
+.template-border h1, .template-border h2, .template-border h3, .template-border h4 { color: #0f172a; }
+
+/* Warm — literary editorial with amber accents */
+.template-warm { font-family: 'Lora', 'Georgia', serif; }
+.template-warm h1, .template-warm h2, .template-warm h3, .template-warm h4 { color: #78350f; }
+
+/* Ruby — sophisticated red-accented professional */
+.template-ruby { font-family: 'Plus Jakarta Sans', 'Instrument Sans', ui-sans-serif, sans-serif; }
+.template-ruby h1, .template-ruby h2, .template-ruby h3, .template-ruby h4 { color: #7f1d1d; }
+
+/* Sidebar — dark sidebar with white content */
+.template-sidebar {
+    font-family: 'Inter', ui-sans-serif, sans-serif;
+    /* Override the print-sheet padding — sidebar handles its own spacing */
+    padding: 0 !important;
+    overflow: hidden;
+}
+.template-sidebar h1, .template-sidebar h2, .template-sidebar h3, .template-sidebar h4 { color: #f8fafc; }
+
+/* Double Column */
+.template-double { font-family: 'Inter', ui-sans-serif, sans-serif; }
+.template-double h1, .template-double h2, .template-double h3, .template-double h4 { color: #0f172a; }
+
+/* Corporate — dense Times New Roman style */
+.template-corporate { font-family: 'Lora', 'Georgia', 'Times New Roman', serif; }
+.template-corporate h1, .template-corporate h2, .template-corporate h3, .template-corporate h4 { color: #000000; }
+
+/* Charcoal — elegant light-weighted style */
+.template-charcoal { font-family: 'Plus Jakarta Sans', 'Instrument Sans', ui-sans-serif, sans-serif; }
+.template-charcoal h1, .template-charcoal h2, .template-charcoal h3, .template-charcoal h4 { color: #374151; }
+
+/* Startup — modern with pill tags and purple accents */
+.template-startup { font-family: 'Inter', 'JetBrains Mono', ui-sans-serif, sans-serif; }
+.template-startup h1, .template-startup h2, .template-startup h3, .template-startup h4 { color: #3b0764; }
+
+/* Bold Header — dramatic dark header band */
+.template-bold {
+    font-family: 'Inter', ui-sans-serif, sans-serif;
+    /* Override padding — bold handles its own layout */
+    padding: 0 !important;
+    overflow: hidden;
+}
+.template-bold h1, .template-bold h2, .template-bold h3, .template-bold h4 { color: #0f172a; }
+
+/* ========================================== */
+/* SIDEBAR & BOLD RESPONSIVE HELPERS          */
+/* ========================================== */
+
+/* Sidebar inner padding uses clamp so sidebar scales too */
+.template-sidebar .bg-slate-950 {
+    padding: clamp(0.4cm, 3.5vw, 1cm);
+}
+.template-sidebar .bg-white {
+    padding: clamp(0.4cm, 3.5vw, 1cm);
+}
+.template-bold .bg-slate-950 {
+    padding: clamp(0.4cm, 3.5vw, 1cm);
+}
+.template-bold .bg-white {
+    padding: clamp(0.4cm, 3.5vw, 1cm);
+}
+
+/* ========================================== */
+/* PRINT MEDIA OPTIMIZATIONS (@media print)   */
+/* ========================================== */
+@media print {
+    /* Hide all workspace panels, top headers, sidebars, and navbars */
+    .no-print,
+    header,
+    footer,
+    .no-print * {
+        display: none !important;
+    }
+
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Target the printed sheet to fit the canvas */
+    .print-sheet {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 1.2cm !important;
+        background: #ffffff !important;
+        color: #000 !important;
+        font-size: 10pt !important;
+    }
+
+    /* Sidebar & Bold templates: restore their own padding on print */
+    .template-sidebar .bg-slate-950,
+    .template-bold .bg-slate-950 {
+        padding: 1cm !important;
+    }
+    .template-sidebar .bg-white,
+    .template-bold .bg-white,
+    .template-bold .bg-white > div {
+        padding: 1cm !important;
+    }
+
+    /* Prevent orphan headings and breaking inside elements */
+    h1, h2, h3, h4, h5 {
+        page-break-after: avoid;
+    }
+
+    .print-sheet p,
+    .print-sheet div,
+    .print-sheet li,
+    .print-sheet section {
+        page-break-inside: avoid;
+    }
+}
